@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">BeanTown</string>
+    <string name="loading_jelly_beans">Loading Jelly Beans from Backend…</string>
+    <string name="jelly_bean_details_error">Something catastrophic has happened and we failed to load the Jelly Beans details</string>
+    <string name="warning_icon">Warning Icon</string>
+    <string name="nutritional_facts">Nutritional Facts:</string>
+    <string name="ingredients">Ingredient(s):</string>
+    <string name="groups">Group(s):</string>
+    <string name="kosher">Kosher:</string>
+    <string name="seasonal">Seasonal:</string>
+    <string name="sugar">Sugar:</string>
+    <string name="gluten">Gluten:</string>
+    <string name="oh_no_something_has_gone_wrong">OH NO! Something has gone wrong!</string>
+    <string name="retry">Retry</string>
+    <string name="error_bean_not_found">Error: Bean Not Found</string>
+</resources>
