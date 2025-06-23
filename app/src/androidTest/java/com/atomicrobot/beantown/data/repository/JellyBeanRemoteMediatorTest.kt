@@ -16,13 +16,13 @@ import com.atomicrobot.beantown.data.network.model.NetworkJellyBeans
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.After
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.IOException
 import java.io.InputStreamReader
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
 
 @ExperimentalPagingApi
 @OptIn(ExperimentalCoroutinesApi::class)
@@ -72,7 +72,7 @@ class JellyBeanRemoteMediatorTest {
         )
         val result = remoteMediator.load(LoadType.REFRESH, pagingState)
         assertTrue(result is MediatorResult.Success)
-        assertFalse((result as MediatorResult.Success).endOfPaginationReached)
+        assertFalse(result.endOfPaginationReached)
     }
 
     @Test
@@ -90,11 +90,11 @@ class JellyBeanRemoteMediatorTest {
         )
         val result = remoteMediator.load(LoadType.REFRESH, pagingState)
         assertTrue(result is MediatorResult.Success)
-        assertTrue((result as MediatorResult.Success).endOfPaginationReached)
+        assertTrue(result.endOfPaginationReached)
     }
 
     @Test
-    fun whenLoadingBeyondJellyBeansSetBoundsLoadReturnsMediatorResultSuccessEndOfPaginationReached() = runTest {
+    fun whenLoadingBeyondJellyBeansDataSetBoundsLoadReturnsMediatorResultSuccessEndOfPaginationReached() = runTest {
         jellyBeanDataSource.addJellyBeans(jellyBeans)
         val remoteMediator = JellyBeanRemoteMediator(
             jellyBeanAPI = jellyBeanDataSource,
@@ -108,7 +108,7 @@ class JellyBeanRemoteMediatorTest {
         )
         val result = remoteMediator.load(LoadType.REFRESH, pagingState)
         assertTrue(result is MediatorResult.Success)
-        assertTrue((result as MediatorResult.Success).endOfPaginationReached)
+        assertTrue(result.endOfPaginationReached)
     }
 
     @Test
@@ -125,7 +125,7 @@ class JellyBeanRemoteMediatorTest {
         )
         val result = remoteMediator.load(LoadType.REFRESH, pagingState)
         assertTrue(result is MediatorResult.Success)
-        assertTrue((result as MediatorResult.Success).endOfPaginationReached)
+        assertTrue(result.endOfPaginationReached)
     }
 
     @Test
@@ -135,6 +135,7 @@ class JellyBeanRemoteMediatorTest {
             jellyBeanAPI = jellyBeanDataSource,
             jellyBeanDB = jellyBeanDB,
         )
+
         val pagingState = PagingState<Int, JellyBeanEntity>(
             pages = listOf(),
             anchorPosition = null,
@@ -143,7 +144,7 @@ class JellyBeanRemoteMediatorTest {
         )
         val result = remoteMediator.load(LoadType.REFRESH, pagingState)
         assertTrue(result is MediatorResult.Error)
-        val error = result as MediatorResult.Error
+        val error = result
         assertTrue(error.throwable is IOException)
         val throwable = error.throwable
         assertTrue(throwable.message == "Simulated exception while trying to fetch page: 1 of size 10 Jelly Beans!")
@@ -164,9 +165,9 @@ class JellyBeanRemoteMediatorTest {
         )
         val result = remoteMediator.load(LoadType.REFRESH, pagingState)
         assertTrue(result is MediatorResult.Error)
-        val error = result as MediatorResult.Error
+        val error = result
         assertTrue(error.throwable.message == "Failed to fetch page: 1 of Jelly Beans")
     }
 }
 
-private const val JELLY_BEANS_JSON = "jelly_bean.json"
+internal const val JELLY_BEANS_JSON = "jelly_bean.json"
