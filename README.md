@@ -10,7 +10,7 @@ Basic List/Detail's app for efficiently loading and displaying Jelly Beans fetch
 
 * Jelly Beans are efficiently loaded from the Jelly Bean Wiki using **Ktor** in pages using **Paging3** then displayed in a `LazyColumn`.
 * Jelly Beans are cached locally using **Room**.
-* Jelly Images are asynchronsouly loaded using **Coil**
+* Jelly Bean images are asynchronsouly loaded using **Coil**
 * The `lightVibrant` colors are extracted from Jelly Bean images using **Palette** to add vibrancy to the UI.
 * All Viewmodels, Repository and Networking components are injected using **Koin**.
 
